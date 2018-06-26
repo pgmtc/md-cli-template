@@ -1,0 +1,21 @@
+{
+  "name": "@pgmtc/md-cli-template",
+  "version": "0.0.1",
+  "description": "Library of templates for md cli tool",
+  "repository": "https://github.com/pgmtc/md-cli-template",
+  "main": "./lib/index.js",
+  "scripts": {
+    "test": "standard",
+    "standard": "standard --fix",
+    "prepublish": "npm run build",
+    "build": "babel -s inline -d . src --out-dir lib"
+  },
+  "author": "Praguematica Ltd",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-function-bind": "^6.22.0",
+    "babel-preset-env": "^1.7.0",
+    "standard": "^11.0.1"
+  }
+}
