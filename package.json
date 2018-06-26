@@ -1,6 +1,6 @@
 {
   "name": "@pgmtc/md-cli-template",
-  "version": "0.0.1",
+  "version": "1.2.1",
   "description": "Library of templates for md cli tool",
   "repository": "https://github.com/pgmtc/md-cli-template",
   "main": "./lib/index.js",
