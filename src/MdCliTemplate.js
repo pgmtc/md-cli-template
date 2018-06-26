@@ -3,12 +3,17 @@ import path from 'path'
 import fs from 'fs'
 
 export default class MdCliTemplate {
-  constructor(templateName, destinationPath) {
+  constructor(templateName) {
     this.templateName = templateName
   }
 
-  process(destinationPath = process.cwd()) {
+  process(properties, destinationPath = process.cwd()) {
     let templateDir = path.join(__dirname, '..', 'templates', this.templateName)
+    if(!fs.existsSync(templateDir)) {
+      console.error(`Template ${this.templateName} doesn't exist`)
+      return
+    }
+
     let filesAndDirs = walkSync(templateDir)
 
     if (!fs.existsSync(destinationPath)) {
@@ -25,7 +30,7 @@ export default class MdCliTemplate {
 
     filesAndDirs.files.forEach((file) => {
         let fileDest = path.join(destinationPath, file.replace(templateDir, ''))
-        let results = this.processFile(file)
+        let results = this.processFile(file, properties)
         if (!fs.existsSync(fileDest)) {
           console.log(`Creating file ${fileDest}`)
           fs.writeFileSync(fileDest, results, 'utf-8')
@@ -37,12 +42,9 @@ export default class MdCliTemplate {
     )
   }
 
-  processFile(path) {
+  processFile(path, properties) {
     let template = fs.readFileSync(path, "utf8");
-    let results = Mustache.render(template,
-      {
-        id: 'testPortlet'
-      })
+    let results = Mustache.render(template, properties)
     return results
   }
 }
