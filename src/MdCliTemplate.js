@@ -8,7 +8,7 @@ export default class MdCliTemplate {
   }
 
   process(destinationPath = process.cwd()) {
-    let templateDir = path.join(__dirname, 'templates', this.templateName)
+    let templateDir = path.join(__dirname, '..', 'templates', this.templateName)
     let filesAndDirs = walkSync(templateDir)
 
     if (!fs.existsSync(destinationPath)) {
