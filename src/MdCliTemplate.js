@@ -3,14 +3,10 @@ import path from 'path'
 import fs from 'fs'
 
 export default class MdCliTemplate {
-  constructor(templateName) {
-    this.templateName = templateName
-  }
-
   process(properties, destinationPath = process.cwd()) {
-    let templateDir = path.join(__dirname, '..', 'templates', this.templateName)
-    if(!fs.existsSync(templateDir)) {
-      console.error(`Template ${this.templateName} doesn't exist`)
+    let templateDir = path.join(__dirname, '..', 'templates', properties.template)
+    if (!fs.existsSync(templateDir)) {
+      console.error(`Template ${properties.template} doesn't exist`)
       return
     }
 
@@ -22,6 +18,7 @@ export default class MdCliTemplate {
 
     filesAndDirs.dirs.forEach((dir) => {
       let dirDest = path.join(destinationPath, dir.replace(templateDir, ''))
+      dirDest = Mustache.render(dirDest, properties)
       console.log('Creating dir ' + dirDest)
       if (!fs.existsSync(dirDest)) {
         fs.mkdirSync(dirDest);
@@ -30,6 +27,7 @@ export default class MdCliTemplate {
 
     filesAndDirs.files.forEach((file) => {
         let fileDest = path.join(destinationPath, file.replace(templateDir, ''))
+        fileDest = Mustache.render(fileDest, properties)
         let results = this.processFile(file, properties)
         if (!fs.existsSync(fileDest)) {
           console.log(`Creating file ${fileDest}`)

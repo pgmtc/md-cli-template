@@ -1,0 +1,36 @@
+DISABLE_NATS: false
+DISABLE_PROXY: false
+DISABLE_AUTH: true
+DISABLE_SOCKETS: false
+DISABLE_STORAGE: true
+DISABLE_GRPC: false
+WEB_CLIENT_PORT: 10001
+MSGHUB_SERVER: 'nats://localhost:4222'
+MSGHUB_ID: mdesktop
+MSGHUB_CLIENT: mdesktop
+SESSION_SECRET: secret1
+PORT: 10000
+GOOGLE_CLIENT_ID: do-not-store
+GOOGLE_CLIENT_SECRET: do-not-store
+AUTH_CALLBACK_URL: 'http://localhost:10000/auth/google'
+MONGODB_URL: 'mongodb+srv://your-mongodb-server'
+PROXIES:
+  {{id}}: 'http://localhost:8080/'
+SOURCES:
+  - 'http://localhost:8080/'
+PORTLETS:
+  {{id}}:
+    id: {{id}}
+    type: vue
+    name: '{{name}}'
+    class: {{id}}
+    grpc:
+      endPoint: 'localhost:50051'
+      protoLocation: 'http://localhost:8080/grpc'
+LAYOUT:
+  -
+    i: {{id}}
+    x: 0
+    y: 0
+    w: 2
+    h: 2

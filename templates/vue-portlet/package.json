@@ -1,7 +1,7 @@
 {
   "name": "{{id}}",
   "version": "1.0.0",
-  "description": "",
+  "description": "{{name}}",
   "main": "webpack.config.js",
   "scripts": {
     "build": "webpack",
@@ -41,7 +41,6 @@
     "babel-plugin-transform-function-bind": "^6.22.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
-    "babel-preset-es2015": "^6.24.1",
     "express": "^4.16.3",
     "google-protobuf": "^3.6.0",
     "grpc": "^1.12.4",

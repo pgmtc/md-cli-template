@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package {{id}};
+
+// The greeting service definition.
+service {{idUpper}}Service {
+  // Sends a greeting
+  rpc grpcTest (TestRequest) returns (TestReply) {}
+}
+
+// The request message containing the user's name.
+message TestRequest {
+  string name = 1;
+  string _userId = 2;
+  string _userEmail = 3;
+}
+
+// The response message containing the greetings
+message TestReply {
+  string message = 1;
+}
